@@ -17,9 +17,9 @@ const params: GetPageParameters = {
     page_id: pageId
 }
 
-async function main() {
+async function getBpTextFromNotion(): Promise<string> {
     const page: ListBlockChildrenResponse = await notion.blocks.children.list({ block_id: pageId});
-    console.dir(page, { depth: null });
+    //console.dir(page, { depth: null });
 
     const texts = page.results
       .map((r) => {
@@ -31,10 +31,13 @@ async function main() {
         })
       .filter((r) => { return r != undefined})
     
-    const text = texts[Math.floor(Math.random() * texts.length)];
-    console.log(text);
+    return texts[Math.floor(Math.random() * texts.length)] || '';
+}
 
+async function main() {
+    const text = await getBpTextFromNotion();
     const sendMessage = `今日のベスプラ！ -> 『${text}』`
+    
     var slackClient = new slack;
     slackClient.post({text: sendMessage}, function(e, r, b){ console.log('sent to slack!!')});
 }

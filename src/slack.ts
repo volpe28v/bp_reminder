@@ -16,7 +16,7 @@ export default class Slack {
         let options: request.CoreOptions = {
             form: {
                 token: form.token || process.env.BP_REMINEDER_TOKEN,
-                channel: form.channel || 'z_times_kodama',
+                channel: form.channel || 'z_times_dev',
                 username: form.username || 'kani',
                 text: form.text || ''
             }
