@@ -1,0 +1,22 @@
+{
+  "name": "bp_reminder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "./node_modules/.bin/tsc",
+    "main": "node ./dist/index.js",
+    "all": "npm run build & npm run main",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^16.10.2",
+    "tslint": "^6.1.3",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@notionhq/client": "^0.4.4"
+  }
+}
