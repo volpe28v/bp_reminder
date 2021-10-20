@@ -15,9 +15,9 @@ export default class Slack {
     post(form: SlackPostForm, callBack: (error: any, response: http.IncomingMessage, body: any) => void) {
         let options: request.CoreOptions = {
             form: {
-                token: form.token || process.env.BP_REMINEDER_TOKEN,
-                channel: form.channel || 'z_times_dev',
-                username: form.username || 'kani',
+                token: form.token || '',
+                channel: form.channel || '',
+                username: form.username || '',
                 text: form.text || ''
             }
         }
