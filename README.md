@@ -1,6 +1,9 @@
 # bp_reminder
 notion に書いたベストプラクティスを slack に通知する
 
+## 動作イメージ
+![image](https://user-images.githubusercontent.com/754962/138047049-5c625f78-502a-4f6a-bb72-939544978990.png)
+
 ## 準備
 - Notion のアクセストークンを取得する
   - https://developers.notion.com/docs/getting-started
@@ -22,6 +25,7 @@ export BP_REMINEDER_TOKEN='xxxxx'
 
 ## ビルド
 ```
+$ npm install
 $ npm run build
 ```
 
