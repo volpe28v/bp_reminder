@@ -1,0 +1,31 @@
+# bp_reminder
+notion に書いたベストプラクティスを slack に通知する
+
+## 準備
+- Notion のアクセストークンを取得する
+  - https://developers.notion.com/docs/getting-started
+  - Notion の admin 権限が必要
+- Slack のトークンを取得する
+  - https://api.slack.com/apps から Bots を追加
+  - Scope に `chat:write` を追加
+  - Workspace にインストール
+  - トークンを取得
+  - Slack の通知したいチャンネルに app を追加する
+
+## 環境変数を設定する
+`.bashrc` などに。
+```
+export NOTION_ACCESS_TOKEN='xxxxxx'
+export NOTION_BP_PAGE_ID='xxxxxx'
+export BP_REMINEDER_TOKEN='xxxxx'
+```
+
+## ビルド
+```
+$ npm run build
+```
+
+## 実行
+```
+$ npm run main
+```
