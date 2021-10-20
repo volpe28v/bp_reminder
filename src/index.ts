@@ -1,32 +1,13 @@
-import { Client, LogLevel } from "@notionhq/client";
-import { ListBlockChildrenResponse } from "@notionhq/client/build/src/api-endpoints";
-import slack from './slack';
-
-const notion = new Client({ auth: process.env.NOTION_ACCESS_TOKEN, logLevel: LogLevel.DEBUG });
-const pageId = process.env.NOTION_BP_PAGE_ID || '';
-
-async function getBpTextFromNotion(): Promise<string> {
-    const page: ListBlockChildrenResponse = await notion.blocks.children.list({ block_id: pageId});
-    //console.dir(page, { depth: null });
-
-    const texts = page.results
-      .map((r) => {
-          if (r.type == 'bulleted_list_item' && r.bulleted_list_item.text[0].type == 'text'){
-            return r.bulleted_list_item.text[0].text.content;
-          }else{
-            return undefined;
-          }
-        })
-      .filter((r) => { return r != undefined})
-    
-    return texts[Math.floor(Math.random() * texts.length)] || '';
-}
+import Notion from "./notion";
+import Slack from './slack';
 
 async function main() {
-    const text = await getBpTextFromNotion();
+    const notionClient = new Notion(process.env.NOTION_ACCESS_TOKEN);
+    const text = await notionClient.getBpText(process.env.NOTION_BP_PAGE_ID);
+
     const sendMessage = `今日のベスプラ！ \n\`\`\`\n『${text}』\n\`\`\``
 
-    var slackClient = new slack;
+    const slackClient = new Slack;
     slackClient.post({
         text: sendMessage,
         channel: 'z_times_dev',
