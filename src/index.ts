@@ -36,8 +36,8 @@ async function getBpTextFromNotion(): Promise<string> {
 
 async function main() {
     const text = await getBpTextFromNotion();
-    const sendMessage = `今日のベスプラ！ -> 『${text}』`
-    
+    const sendMessage = `今日のベスプラ！ \n\`\`\`\n『${text}』\n\`\`\``
+
     var slackClient = new slack;
     slackClient.post({text: sendMessage}, function(e, r, b){ console.log('sent to slack!!')});
 }
