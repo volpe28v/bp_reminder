@@ -1,12 +1,17 @@
 {
+    "compileOnSave": true,
     "compilerOptions": {
         "lib": ["ES2015"],
         "module": "commonjs",
-        "outDir": "dist",
+        "rootDir": "./src",
+        "outDir": "./lib",
         "sourceMap": true,
         "strict": true,
-        "target": "es2015"
-    },
+        "target": "es2015",
+        "declarationMap": true,
+        "declaration": true,
+        "esModuleInterop": true
+        },
     "include": [
         "src"
     ]

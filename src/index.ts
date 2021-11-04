@@ -1,7 +1,7 @@
 import Notion from "./notion";
 import Slack from './slack';
 
-async function main() {
+export const bpReminder = async function main() {
     const notionClient = new Notion(process.env.NOTION_ACCESS_TOKEN);
     const text = await notionClient.getBpText(process.env.NOTION_BP_PAGE_ID);
 
@@ -16,4 +16,4 @@ async function main() {
     }, function(){ console.log('sent to slack!!')});
 }
 
-main();
+export default bpReminder;

@@ -2,12 +2,15 @@
   "name": "bp_reminder",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "build": "./node_modules/.bin/tsc",
-    "main": "node ./dist/index.js",
-    "all": "npm run build & npm run main",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepare": "npm run build",
+    "build": "npm run clean && tsc -p .",
+    "dev": "ts-node ./index.ts",
+    "clean": "rm -rf ./lib",
+    "start": "functions-framework --source=lib/ --target=bpReminder --signature-type=cloudevent",
+    "test": "npm run build && jest",
+    "watch": "tsc -w"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +21,7 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
+    "@google-cloud/functions-framework": "1.7.1",
     "@notionhq/client": "^0.4.4",
     "request": "^2.88.2"
   }
