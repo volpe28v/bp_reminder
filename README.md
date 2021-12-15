@@ -30,6 +30,12 @@ $ npm run build
 ```
 
 ## 実行
+ローカルでの実行
 ```
-$ npm run main
+$ PORT=8082 npm run start
+```
+
+別ターミナルから
+```
+$ cloudevents send http://localhost:8082 --id abc-123 --source cloudevents.conformance.tool --type foo.bar
 ```
