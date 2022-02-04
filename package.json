@@ -9,6 +9,7 @@
     "dev": "ts-node ./index.ts",
     "clean": "rm -rf ./lib",
     "start": "functions-framework --source=lib/ --target=bpReminder --signature-type=cloudevent",
+    "main": "node ./lib/main.js",
     "test": "npm run build && jest",
     "watch": "tsc -w"
   },

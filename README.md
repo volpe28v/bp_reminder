@@ -39,3 +39,9 @@ $ PORT=8082 npm run start
 ```
 $ cloudevents send http://localhost:8082 --id abc-123 --source cloudevents.conformance.tool --type foo.bar
 ```
+
+## デバック実行
+Notionからの取得データをコンソールに出力します
+```
+$ npm run main
+```

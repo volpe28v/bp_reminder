@@ -3,10 +3,13 @@ import Slack from './slack';
 
 export const bpReminder = async function main() {
     const notionClient = new Notion(process.env.NOTION_ACCESS_TOKEN);
-    const text = await notionClient.getBpText(process.env.NOTION_BP_PAGE_ID);
+    const texts = await notionClient.getBpTexts(process.env.NOTION_BP_PAGE_ID);
 
-    const sendMessage = `今日のベスプラ！ \n\`\`\`\n『${text}』\n\`\`\``
-
+    const messages = texts.slice(0,3).map((t) => {
+      return `『${t}』`;
+    }).join('\n');
+    const sendMessage = `今日のベスプラ！ \n\`\`\`\n${messages}\n\`\`\``;
+    
     const slackClient = new Slack;
     slackClient.post({
         text: sendMessage,
